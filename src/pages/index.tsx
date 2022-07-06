@@ -42,33 +42,39 @@ function Game() {
           <Button
             style={[styles.horizontal, { borderTopWidth: 0 }]}
             value={table[0]}
+            disabled={!!table[0]}
             onPress={() => onChangeTurn(0, turn)}
           />
           <Button
             style={[styles.horizontal]}
             value={table[1]}
+            disabled={!!table[1]}
             onPress={() => onChangeTurn(1, turn)}
           />
           <Button
             style={[styles.horizontal]}
             value={table[2]}
+            disabled={!!table[2]}
             onPress={() => onChangeTurn(2, turn)}
           />
         </View>
         <View style={styles.vertical}>
           <Button
             value={table[3]}
+            disabled={!!table[3]}
             style={[styles.horizontal, { borderTopWidth: 0 }]}
             onPress={() => onChangeTurn(3, turn)}
           />
           <Button
             style={[styles.horizontal]}
             value={table[4]}
+            disabled={!!table[4]}
             onPress={() => onChangeTurn(4, turn)}
           />
           <Button
             style={[styles.horizontal]}
             value={table[5]}
+            disabled={!!table[5]}
             onPress={() => onChangeTurn(5, turn)}
           />
         </View>
@@ -76,16 +82,19 @@ function Game() {
           <Button
             style={[styles.horizontal, { borderTopWidth: 0 }]}
             value={table[6]}
+            disabled={!!table[6]}
             onPress={() => onChangeTurn(6, turn)}
           />
           <Button
             style={[styles.horizontal]}
             value={table[7]}
+            disabled={!!table[7]}
             onPress={() => onChangeTurn(7, turn)}
           />
           <Button
             style={[styles.horizontal]}
             value={table[8]}
+            disabled={!!table[8]}
             onPress={() => onChangeTurn(8, turn)}
           />
         </View>

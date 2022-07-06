@@ -8,9 +8,10 @@ type ButtonProps = {
   style: StyleProp<ViewStyle>;
   onPress: () => void;
   value?: string;
+  disabled?: boolean;
 };
 
-function Button({ style, value, onPress }: ButtonProps) {
+function Button({ style, value, onPress, disabled }: ButtonProps) {
   const [icon, setIcon] = useState<JSX.Element>(<></>);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function Button({ style, value, onPress }: ButtonProps) {
   }, [value]);
 
   return (
-    <TouchableHighlight underlayColor="#eeeeee" style={style} onPress={onPress}>
+    <TouchableHighlight disabled={disabled} underlayColor="#eeeeee" style={style} onPress={onPress}>
       {icon}
     </TouchableHighlight>
   );
