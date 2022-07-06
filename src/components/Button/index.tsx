@@ -7,7 +7,7 @@ import X from '../X';
 type ButtonProps = {
   style: StyleProp<ViewStyle>;
   onPress: () => void;
-  value?: string;
+  value: string;
   disabled?: boolean;
 };
 
@@ -15,6 +15,7 @@ function Button({ style, value, onPress, disabled }: ButtonProps) {
   const [icon, setIcon] = useState<JSX.Element>(<></>);
 
   useEffect(() => {
+    console.log(value);
     if (value === 'x') {
       setIcon(<X />);
     } else if (value === 'o') {
@@ -25,7 +26,7 @@ function Button({ style, value, onPress, disabled }: ButtonProps) {
   }, [value]);
 
   return (
-    <TouchableHighlight disabled={disabled} underlayColor="#eeeeee" style={style} onPress={onPress}>
+    <TouchableHighlight disabled={disabled} underlayColor="#FFF" style={style} onPress={onPress}>
       {icon}
     </TouchableHighlight>
   );

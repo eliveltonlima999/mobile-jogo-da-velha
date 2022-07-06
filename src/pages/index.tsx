@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { TouchableOpacity, View, Text, Alert } from 'react-native';
 
 import Button from '../components/Button';
 import { TurnEnum } from '../enums/TurnEnum';
@@ -9,31 +9,47 @@ import styles from './styles';
 const INITTABLE = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
-  const [turn, setTurn] = useState(TurnEnum.ia);
-  const [table, setTable] = useState(INITTABLE);
+  const [turn, setTurn] = useState(TurnEnum.player);
+  const [table, setTable] = useState([...INITTABLE]);
 
-  const onChangeTurn = (position: number, turn?: TurnEnum) => {
-    const newTable = table;
-    if (newTable[position] === '') {
-      if (turn === TurnEnum.ia) {
-        newTable[position] = 'x';
-        setTurn(TurnEnum.player);
-      } else if (turn === TurnEnum.player) {
-        setTurn(TurnEnum.ia);
-        newTable[position] = 'o';
-      } else {
-        newTable[position] = '';
+  const onChangeTurn = useCallback(
+    (position: number, turn?: TurnEnum) => {
+      const newTable = table;
+      if (newTable[position] === '') {
+        if (turn === TurnEnum.ia) {
+          newTable[position] = 'x';
+          setTurn(TurnEnum.player);
+        } else if (turn === TurnEnum.player) {
+          setTurn(TurnEnum.ia);
+          newTable[position] = 'o';
+        }
+        setTable([...newTable]);
       }
-      setTable([...newTable]);
-    }
-  };
+    },
+    [table]
+  );
 
-  const onResetTable = () => {
-    setTable([...INITTABLE]);
-    setTurn(TurnEnum.ia);
-  };
+  const onResetTable = useCallback(
+    () =>
+      Alert.alert('Recomeçar', 'Tem certeza que deseja recomeçar?', [
+        {
+          text: 'Não',
+          style: 'cancel',
+        },
+        {
+          text: 'Sim',
+          onPress: () => {
+            setTurn(TurnEnum.player);
+            setTable([...INITTABLE]);
+          },
+        },
+      ]),
+    []
+  );
 
-  useEffect(() => console.log('table', table), [table]);
+  // const minMax = useCallback(() => {}, []);
+  // useEffect(() => console.log('table', table), [table]);
+  // useEffect(() => console.log('INITTABLE', INITTABLE), [INITTABLE]);
 
   return (
     <View style={styles.container}>
