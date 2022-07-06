@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     flexDirection: 'row',
-    // backgroundColor: '#FFF',
+    bottom: -50,
   },
   vertical: {
     flex: 1,
@@ -25,6 +25,26 @@ const styles = StyleSheet.create({
     borderTopColor: '#FFF',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  otherActions: {
+    width: '80%',
+    height: 100,
+    bottom: -130,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonReset: {
+    backgroundColor: '#FFF',
+    height: 50,
+    width: 110,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  labelButtonReset: {
+    color: '#000',
+    fontSize: 16,
   },
 });
 
