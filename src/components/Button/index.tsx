@@ -15,7 +15,6 @@ function Button({ style, value, onPress, disabled }: ButtonProps) {
   const [icon, setIcon] = useState<JSX.Element>(<></>);
 
   useEffect(() => {
-    console.log(value);
     if (value === 'x') {
       setIcon(<X />);
     } else if (value === 'o') {

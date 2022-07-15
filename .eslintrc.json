@@ -56,7 +56,8 @@
         "no-nested-ternary": "off",
         "default-param-last": "off",
         "func-names": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "no-plusplus": "off"
     },
     "settings": {
         "import/resolver": {
