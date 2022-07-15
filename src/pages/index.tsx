@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TouchableOpacity, View, Text, Alert } from 'react-native';
 
 import Button from '../components/Button';
@@ -41,17 +41,6 @@ function Game() {
     return roundWon;
   };
 
-  const minMax = (table: string[]) => {
-    const moves = [];
-    for (let line = 0; line < 3; line++) {
-      for (let column = 0; column < 3; column++) {
-        if (table[line][column] === '') moves.push([line, column]);
-      }
-    }
-
-    console.log(moves);
-  };
-
   const resultGame = useCallback(
     (table: string[]): void => {
       const check = checkTable(table);
@@ -86,12 +75,13 @@ function Game() {
     (position: number, turn?: TurnEnum) => {
       const newTable = table;
       if (newTable[position] === '') {
-        if (turn === TurnEnum.ia) {
-          const isPosition = minMax(newTable);
-          newTable[position] = 'o';
-          resultGame(newTable);
-          setTurn(TurnEnum.player);
-        } else if (turn === TurnEnum.player) {
+        // if (turn === TurnEnum.ia) {
+        //   const isPosition = minMax(newTable);
+        //   newTable[position] = 'o';
+        //   resultGame(newTable);
+        //   setTurn(TurnEnum.player);
+        // }
+        if (turn === TurnEnum.player) {
           newTable[position] = 'x';
           resultGame(newTable);
           setTurn(TurnEnum.ia);
@@ -119,6 +109,21 @@ function Game() {
       ]),
     []
   );
+
+  const minMax = (table: string[]) => {
+    const moves = [];
+    for (let position = 0; position < table.length; position++) {
+      if (table[position] === '') moves.push(position);
+    }
+
+    console.log(moves);
+  };
+
+  useEffect(() => {
+    if (turn === TurnEnum.ia) {
+      minMax(table);
+    }
+  }, [turn]);
 
   return (
     <View style={styles.container}>
